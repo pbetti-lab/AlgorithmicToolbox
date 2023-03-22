@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PbettiLab.AlgorithmicToolbo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9DB0EBF1-57BA-41E8-92F7-AB92E255F39F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PbettiLab.AlgorithmicToolbox.Logic.UnitTests", "Tests\PbettiLab.AlgorithmicToolbox.Logic.UnitTests\PbettiLab.AlgorithmicToolbox.Logic.UnitTests.csproj", "{2DF053CC-9FCB-4E9A-899A-96F5057723C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,9 +25,16 @@ Global
 		{637DB426-2584-4929-93FE-09A1C230496B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{637DB426-2584-4929-93FE-09A1C230496B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{637DB426-2584-4929-93FE-09A1C230496B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DF053CC-9FCB-4E9A-899A-96F5057723C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DF053CC-9FCB-4E9A-899A-96F5057723C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DF053CC-9FCB-4E9A-899A-96F5057723C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DF053CC-9FCB-4E9A-899A-96F5057723C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2DF053CC-9FCB-4E9A-899A-96F5057723C3} = {9DB0EBF1-57BA-41E8-92F7-AB92E255F39F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6897BB25-903C-4BC3-8C44-2BA7954E524B}
