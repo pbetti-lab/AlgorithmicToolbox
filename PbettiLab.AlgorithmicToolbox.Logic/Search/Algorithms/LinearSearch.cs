@@ -3,7 +3,7 @@ using System;
 
 namespace PbettiLab.AlgorithmicToolbox.Logic.Search
 {
-	public class LinearSearch : ILinearSearch
+	public class LinearSearch : ISearch
 	{
 		/// <summary>
 		/// Check if the elements array contains a specific value.

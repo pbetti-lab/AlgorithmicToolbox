@@ -1,6 +1,6 @@
 ﻿namespace PbettiLab.AlgorithmicToolbox.Logic.Search.Interfaces
 {
-	public interface ILinearSearch
+	public interface ISearch
 	{
 		public bool Exist(int[] elements, int value);
 
