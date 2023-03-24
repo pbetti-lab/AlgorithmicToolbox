@@ -5,8 +5,6 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Search
 {
 	public class LinearSearch : ISearch
 	{
-		#region public methods
-
 		/// <summary>
 		/// Check if the elements array contains a specific value.
 		/// </summary>
@@ -21,7 +19,16 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Search
 			if (elements.Length == 0)
 				return false;
 
-			return InternalGetIndex(elements, value) >= 0;
+			var result = false;
+			var count = 0L;
+
+			while (count < elements.Length && !result)
+			{
+				result = elements[count] == value;
+				count++;
+			}
+
+			return result;
 		}
 
 		/// <summary>
@@ -35,38 +42,19 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Search
 			if (elements is null)
 				throw new ArgumentNullException(nameof(elements), "Input variable elements cannot be null");
 
-			if (elements.Length == 0)
-				return -1L;
-
-			return InternalGetIndex(elements, value);
-		}
-		
-		#endregion
-
-		#region private methods
-
-		/// <summary>
-		/// If exist, return the index of the value present in the elements array, if not return -1.
-		/// </summary>
-		/// <param name="elements">The elements array.</param>
-		/// <param name="value">The value to search.</param>
-		private long InternalGetIndex(int[] elements, int value)
-		{
-			var elementIndexFound = -1L;
+			var result = -1L;
 			var count = 0L;
 
-			while (count < elements.Length && elementIndexFound < 0)
+			while (count < elements.Length && result < 0)
 			{
-				elementIndexFound = elements[count] == value
-					? count
-					: -1;
+				result = elements[count] == value 
+					? count 
+					: result;
 
 				count++;
 			}
 
-			return elementIndexFound;
+			return result;
 		}
-
-		#endregion
 	}
 }
