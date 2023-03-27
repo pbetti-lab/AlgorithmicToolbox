@@ -9,6 +9,11 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Order.Algorithms
 
 		#region public methods
 
+		/// <summary>
+		/// Sort the elements by ascending order.
+		/// </summary>
+		/// <param name="elements">The elements to sort.</param>
+		/// <exception cref="ArgumentNullException">If the elements array is null.</exception>
 		public void Order(int[] elements)
 		{
 			if (elements is null)
@@ -20,6 +25,11 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Order.Algorithms
 			SortElements(elements, SortOrderType.Ascending);
 		}
 
+		/// <summary>
+		/// Sort the elements by ascending order.
+		/// </summary>
+		/// <param name="elements">The elements to sort.</param>
+		/// <exception cref="ArgumentNullException">If the elements array is null.</exception>
 		public void OrderByDescending(int[] elements)
 		{
 			if (elements is null)
