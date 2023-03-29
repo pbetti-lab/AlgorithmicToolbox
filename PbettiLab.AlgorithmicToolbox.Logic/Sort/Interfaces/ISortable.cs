@@ -1,4 +1,4 @@
-﻿namespace PbettiLab.AlgorithmicToolbox.Logic.Order.Interfaces
+﻿namespace PbettiLab.AlgorithmicToolbox.Logic.Sort.Interfaces
 {
 	public interface ISortable
 	{

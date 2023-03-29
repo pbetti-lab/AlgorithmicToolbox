@@ -1,4 +1,4 @@
-﻿namespace PbettiLab.AlgorithmicToolbox.Logic.Order.DataStructures
+﻿namespace PbettiLab.AlgorithmicToolbox.Logic.Sort.DataStructures
 {
 	public struct ArrayElement
 	{

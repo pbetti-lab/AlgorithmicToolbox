@@ -1,8 +1,8 @@
-﻿using PbettiLab.AlgorithmicToolbox.Logic.Order.DataStructures;
-using PbettiLab.AlgorithmicToolbox.Logic.Order.Interfaces;
+﻿using PbettiLab.AlgorithmicToolbox.Logic.Sort.DataStructures;
+using PbettiLab.AlgorithmicToolbox.Logic.Sort.Interfaces;
 using System;
 
-namespace PbettiLab.AlgorithmicToolbox.Logic.Order.Algorithms
+namespace PbettiLab.AlgorithmicToolbox.Logic.Sort.Algorithms
 {
 	public class SelectionSort : ISortable
 	{
