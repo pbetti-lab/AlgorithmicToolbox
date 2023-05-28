@@ -11,7 +11,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Sort.Algorithms
 		[TestMethod]
 		public void Order_InputElementsIsNull_ThrowArgumentNullException()
 		{
-			int[] elements = null;
+			int[] elements = default;
 			ISortable selectionSort = new SelectionSort();
 
 			Assert.ThrowsException<ArgumentNullException>(() => selectionSort.Order(elements));
@@ -141,6 +141,19 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Sort.Algorithms
 			selectionSort.Order(elements);
 
 			Assert.AreEqual(11, elements.Length);
+			for (int i = 1; i < elements.Length - 1; i++)
+				Assert.IsTrue(elements[i - 1] <= elements[i]);
+		}
+
+		[TestMethod]
+		public void Order_SortElementsTest9_ElementsAreOrdered()
+		{
+			ISortable selectionSort = new SelectionSort();
+
+			int[] elements = new int[] { 8, 7, 6, 5, 4, 3, 2, 1 };
+			selectionSort.Order(elements);
+
+			Assert.AreEqual(8, elements.Length);
 			for (int i = 1; i < elements.Length - 1; i++)
 				Assert.IsTrue(elements[i - 1] <= elements[i]);
 		}
@@ -281,5 +294,19 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Sort.Algorithms
 			for (int i = 1; i < elements.Length - 1; i++)
 				Assert.IsTrue(elements[i - 1] >= elements[i]);
 		}
+
+		[TestMethod]
+		public void OrderByDescending_SortElementsTest9_ElementsAreOrdered()
+		{
+			ISortable selectionSort = new SelectionSort();
+
+			int[] elements = new int[] { 8, 7, 6, 5, 4, 3, 2, 1 };
+			selectionSort.OrderByDescending(elements);
+
+			Assert.AreEqual(8, elements.Length);
+			for (int i = 1; i < elements.Length - 1; i++)
+				Assert.IsTrue(elements[i - 1] >= elements[i]);
+		}
+
 	}
 }
