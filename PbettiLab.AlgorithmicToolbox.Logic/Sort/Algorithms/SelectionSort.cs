@@ -1,119 +1,89 @@
-﻿using PbettiLab.AlgorithmicToolbox.Logic.Sort.DataStructures;
-using PbettiLab.AlgorithmicToolbox.Logic.Sort.Interfaces;
+﻿using PbettiLab.AlgorithmicToolbox.Logic.Sort.Interfaces;
 using System;
 
 namespace PbettiLab.AlgorithmicToolbox.Logic.Sort.Algorithms
 {
 	public class SelectionSort : ISortable
 	{
-
 		#region public methods
 
 		/// <summary>
-		/// Sort the elements by ascending order.
+		/// Sort input elements by ascending order.
 		/// </summary>
 		/// <param name="elements">The elements to sort.</param>
 		/// <exception cref="ArgumentNullException">If the elements array is null.</exception>
 		public void Order(int[] elements)
 		{
 			if (elements is null)
+			{ 
 				throw new ArgumentNullException(nameof(elements), "Input variable elements cannot be null");
+			}
 
 			if (elements.Length <= 1)
+			{ 
 				return;
+			}
 
-			SortElements(elements, SortOrderType.Ascending);
+			Sort(elements);
 		}
 
 		/// <summary>
-		/// Sort the elements by ascending order.
+		/// Sort input elements by descending order.
 		/// </summary>
 		/// <param name="elements">The elements to sort.</param>
 		/// <exception cref="ArgumentNullException">If the elements array is null.</exception>
 		public void OrderByDescending(int[] elements)
 		{
-			if (elements is null)
-				throw new ArgumentNullException(nameof(elements), "Input variable elements cannot be null");
-
-			if (elements.Length <= 1)
-				return;
-
-			SortElements(elements, SortOrderType.Descending);
+			Order(elements);
+			ReverseOrder(elements);
 		}
 
 		#endregion
 
 		#region private methods
 
-		private void SortElements(int[] elements, SortOrderType sortOrderType)
+		private void Sort(int[] elements)
 		{
-			var startingPositionValue = new ArrayElement(0, elements[0]);
+			long startingPosition = 0;
 
-			while (startingPositionValue.Index < elements.Length - 1)
+			while (startingPosition < elements.Length - 1)
 			{
-				var value = GetElementBySortOrderType(elements, startingPositionValue, sortOrderType);
+				long minValuePosition = GetMinValuePosition(elements, startingPosition);
 
-				SwapValues(elements, startingPositionValue, value);
+				SwapValues(elements, startingPosition, minValuePosition);
 
-				IncrementStartingPosition(elements, ref startingPositionValue);
+				startingPosition++;
 			}
 		}
 
-		private ArrayElement GetElementBySortOrderType(int[] elements, ArrayElement startingPositionValue, 
-			SortOrderType sortOrderType) => sortOrderType switch
+		private long GetMinValuePosition(int[] elements, long startingPosition)
 		{
-			SortOrderType.Ascending => GetMinValueElementFromSpecifiedStartingPosition(elements, startingPositionValue),
-			SortOrderType.Descending => GetMaxValueElementFromSpecifiedStartingPosition(elements, startingPositionValue),
-			_ => throw new ArgumentOutOfRangeException(nameof(sortOrderType), $"Order type value {sortOrderType} not recognized.")
-		};
+			long minValuePosition = startingPosition;
 
-		private ArrayElement GetMinValueElementFromSpecifiedStartingPosition(int[] elements, ArrayElement startingPositionValue)
-		{
-			var minValue = new ArrayElement(startingPositionValue.Index, elements[startingPositionValue.Index]);
-
-			for (long i = startingPositionValue.Index; i <= elements.Length - 1; i++)
+			for (long i = startingPosition+1; i < elements.Length; i++)
 			{
-				if (elements[i] < minValue.Value)
-				{
-					minValue.Index = i;
-					minValue.Value = elements[i];
+				if (elements[i] < elements[minValuePosition])
+				{ 
+					minValuePosition = i;
 				}
 			}
 
-			return minValue;
+			return minValuePosition;
 		}
 
-		private ArrayElement GetMaxValueElementFromSpecifiedStartingPosition(int[] elements, ArrayElement startingPositionValue)
+		private void SwapValues(int[] elements, long startingPosition, long minValuePosition)
 		{
-			var maxValue = new ArrayElement(startingPositionValue.Index, elements[startingPositionValue.Index]);
-
-			for (long i = startingPositionValue.Index; i <= elements.Length - 1; i++)
-			{
-				if (elements[i] > maxValue.Value)
-				{
-					maxValue.Index = i;
-					maxValue.Value = elements[i];
-				}
-			}
-
-			return maxValue;
+			(elements[startingPosition], elements[minValuePosition]) = (elements[minValuePosition], elements[startingPosition]);
 		}
 
-		private void SwapValues(int[] elements, ArrayElement startingPosition, ArrayElement minValue)
+		private void ReverseOrder(int[] elements)
 		{
-			if (startingPosition.Index != minValue.Index)
+			for (long i = 0; i < (elements.Length / 2); i++)
 			{
-				elements[startingPosition.Index] = minValue.Value;
-				elements[minValue.Index] = startingPosition.Value;
+				(elements[elements.Length - 1 - i], elements[i]) = (elements[i], elements[elements.Length - 1 - i]);
 			}
 		}
 
-		private void IncrementStartingPosition(int[] elements, ref ArrayElement startingPositionValue)
-		{
-			startingPositionValue.Index++;
-			startingPositionValue.Value = elements[startingPositionValue.Index];
-		}
-		
 		#endregion
 	}
 }
