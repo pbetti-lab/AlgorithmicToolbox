@@ -3,16 +3,16 @@ using PbettiLab.AlgorithmicToolbox.Logic.Sort.Algorithms;
 using PbettiLab.AlgorithmicToolbox.Logic.Sort.Interfaces;
 using System;
 
-namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
+namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Sort.Algorithms
 {
 	[TestClass]
-	public class MergeSortTests
+	public class MergeSortIterativeTests
 	{
 		[TestMethod]
 		public void Order_InputElementsIsNull_ThrowArgumentNullException()
 		{
 			int[] elements = null;
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			Assert.ThrowsException<ArgumentNullException>(() => mergeSort.Order(elements));
 		}
@@ -21,7 +21,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		public void Order_InputElementsIsEmpty_ElementsRemainsTheSame()
 		{
 			int[] elements = new int[] { };
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			mergeSort.Order(elements);
 
@@ -33,7 +33,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		{
 			const int ELEMENT_VALUE = 6;
 			int[] elements = new int[] { ELEMENT_VALUE };
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			mergeSort.Order(elements);
 
@@ -44,7 +44,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void Order_SortElementsTest1_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 6, 5 };
 			mergeSort.Order(elements);
@@ -57,7 +57,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void Order_SortElementsTest2_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 5, 5 };
 			mergeSort.Order(elements);
@@ -70,7 +70,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void Order_SortElementsTest3_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 5, 6 };
 			mergeSort.Order(elements);
@@ -83,7 +83,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void Order_SortElementsTest4_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 6, 5, 4 };
 			mergeSort.Order(elements);
@@ -96,7 +96,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void Order_SortElementsTest5_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 4, 5, 6 };
 			mergeSort.Order(elements);
@@ -109,7 +109,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void Order_SortElementsTest6_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 5, 4, 6 };
 			mergeSort.Order(elements);
@@ -122,7 +122,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void Order_SortElementsTest7_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 5, 6, 4 };
 			mergeSort.Order(elements);
@@ -135,7 +135,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void Order_SortElementsTest8_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 12, 5, 9, 4, 5, 8, 115, 2, 3, 7, 4 };
 			mergeSort.Order(elements);
@@ -146,10 +146,23 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		}
 
 		[TestMethod]
+		public void Order_SortElementsTest9_ElementsAreOrdered()
+		{
+			ISortable mergeSort = new MergeSortIterative();
+
+			int[] elements = new int[] { 8, 7, 6, 5, 4, 3, 2, 1 };
+			mergeSort.Order(elements);
+
+			Assert.AreEqual(8, elements.Length);
+			for (int i = 1; i < elements.Length - 1; i++)
+				Assert.IsTrue(elements[i - 1] <= elements[i]);
+		}
+
+		[TestMethod]
 		public void OrderByDescending_InputElementsIsNull_ThrowArgumentNullException()
 		{
 			int[] elements = null;
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			Assert.ThrowsException<ArgumentNullException>(() => mergeSort.OrderByDescending(elements));
 		}
@@ -158,7 +171,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		public void OrderByDescending_InputElementsIsEmpty_ElementsRemainsTheSame()
 		{
 			int[] elements = new int[] { };
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			mergeSort.OrderByDescending(elements);
 
@@ -170,7 +183,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		{
 			const int ELEMENT_VALUE = 6;
 			int[] elements = new int[] { ELEMENT_VALUE };
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			mergeSort.OrderByDescending(elements);
 
@@ -181,7 +194,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void OrderByDescending_SortElementsTest1_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 6, 5 };
 			mergeSort.OrderByDescending(elements);
@@ -194,7 +207,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void OrderByDescending_SortElementsTest2_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 5, 5 };
 			mergeSort.OrderByDescending(elements);
@@ -207,7 +220,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void OrderByDescending_SortElementsTest3_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 5, 6 };
 			mergeSort.OrderByDescending(elements);
@@ -220,7 +233,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void OrderByDescending_SortElementsTest4_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 6, 5, 4 };
 			mergeSort.OrderByDescending(elements);
@@ -233,7 +246,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void OrderByDescending_SortElementsTest5_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 4, 5, 6 };
 			mergeSort.OrderByDescending(elements);
@@ -246,7 +259,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void OrderByDescending_SortElementsTest6_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 5, 4, 6 };
 			mergeSort.OrderByDescending(elements);
@@ -259,7 +272,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void OrderByDescending_SortElementsTest7_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 5, 6, 4 };
 			mergeSort.OrderByDescending(elements);
@@ -272,7 +285,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 		[TestMethod]
 		public void OrderByDescending_SortElementsTest8_ElementsAreOrdered()
 		{
-			ISortable mergeSort = new MergeSort();
+			ISortable mergeSort = new MergeSortIterative();
 
 			int[] elements = new int[] { 12, 5, 9, 4, 5, 8, 115, 2, 3, 7, 4 };
 			mergeSort.OrderByDescending(elements);
@@ -282,5 +295,17 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.UnitTests.Order.Algorithms
 				Assert.IsTrue(elements[i - 1] >= elements[i]);
 		}
 
+		[TestMethod]
+		public void OrderByDescending_SortElementsTest9_ElementsAreOrdered()
+		{
+			ISortable mergeSort = new MergeSortIterative();
+
+			int[] elements = new int[] { 8, 7, 6, 5, 4, 3, 2, 1 }; 
+			mergeSort.OrderByDescending(elements);
+
+			Assert.AreEqual(8, elements.Length);
+			for (int i = 1; i < elements.Length - 1; i++)
+				Assert.IsTrue(elements[i - 1] >= elements[i]);
+		}
 	}
 }
