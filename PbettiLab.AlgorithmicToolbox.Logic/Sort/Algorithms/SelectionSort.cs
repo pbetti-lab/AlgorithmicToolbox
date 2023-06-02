@@ -42,7 +42,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Sort.Algorithms
 
 		#region private methods
 
-		private void Sort(int[] elements)
+		private static void Sort(int[] elements)
 		{
 			long startingPosition = 0;
 
@@ -56,7 +56,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Sort.Algorithms
 			}
 		}
 
-		private long GetMinValuePosition(int[] elements, long startingPosition)
+		private static long GetMinValuePosition(int[] elements, long startingPosition)
 		{
 			long minValuePosition = startingPosition;
 
@@ -71,12 +71,12 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Sort.Algorithms
 			return minValuePosition;
 		}
 
-		private void SwapValues(int[] elements, long startingPosition, long minValuePosition)
+		private static void SwapValues(int[] elements, long startingPosition, long minValuePosition)
 		{
 			(elements[startingPosition], elements[minValuePosition]) = (elements[minValuePosition], elements[startingPosition]);
 		}
 
-		private void ReverseOrder(int[] elements)
+		private static void ReverseOrder(int[] elements)
 		{
 			for (long i = 0; i < (elements.Length / 2); i++)
 			{
