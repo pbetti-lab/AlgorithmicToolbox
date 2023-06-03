@@ -50,7 +50,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Search
 		/// </summary>
 		/// <param name="elements">The elements array.</param>
 		/// <param name="value">The value to search.</param>
-		private long InternalGetIndex(int[] elements, int value)
+		private static long InternalGetIndex(int[] elements, int value)
 		{
 			var elementIndexFound = -1L;
 			var count = 0L;
