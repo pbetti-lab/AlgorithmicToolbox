@@ -3,7 +3,7 @@ using System;
 
 namespace PbettiLab.AlgorithmicToolbox.Logic.Search.Algorithms
 {
-	public class BinaryRecursiveSearch : ISearch
+	public class BinarySearchIterative : ISearch
 	{
 		#region public methods
 
@@ -21,7 +21,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Search.Algorithms
 			if (elements.Length == 0)
 				return false;
 
-			return InternalGetIndex(elements, value, 0, elements.Length - 1) >= 0;
+			return InternalGetIndex(elements, value) >= 0;
 		}
 
 		/// <summary>
@@ -38,7 +38,7 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Search.Algorithms
 			if (elements.Length == 0)
 				return -1;
 
-			return InternalGetIndex(elements, value, 0, elements.Length - 1);
+			return InternalGetIndex(elements, value);
 		}
 
 		#endregion
@@ -50,29 +50,33 @@ namespace PbettiLab.AlgorithmicToolbox.Logic.Search.Algorithms
 		/// </summary>
 		/// <param name="elements">The elements array.</param>
 		/// <param name="value">The value to search.</param>
-		private long InternalGetIndex(int[] elements, int value, long leftBoundIndex, long rightBoundIndex)
+		private long InternalGetIndex(int[] elements, int value)
 		{
-			if (leftBoundIndex > rightBoundIndex)
-				return -1;
+			long leftBoundIndex = 0;
+			long rightBoundIndex = elements.Length - 1;
+			long elementIndexFound = -1;
 
-			long elementIndex = (leftBoundIndex + rightBoundIndex) / 2;
+			while (leftBoundIndex <= rightBoundIndex && elementIndexFound < 0)
+			{
+				long elementIndex = (leftBoundIndex + rightBoundIndex) / 2;
 
-			if (elements[elementIndex] < value)
-			{
-				leftBoundIndex = elementIndex + 1;
-			}
-			else if (elements[elementIndex] > value)
-			{
-				rightBoundIndex = elementIndex - 1;
-			}
-			else
-			{
-				return elementIndex;
+				if (elements[elementIndex] < value)
+				{ 
+					leftBoundIndex = elementIndex + 1;
+				}
+				else if (elements[elementIndex] > value)
+				{
+					rightBoundIndex = elementIndex - 1;
+				}
+				else
+				{ 
+					elementIndexFound = elementIndex;
+				}
 			}
 
-			return InternalGetIndex(elements, value, leftBoundIndex, rightBoundIndex);
+			return elementIndexFound;
 		}
-		
+
 		#endregion
 	}
 }
